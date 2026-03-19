@@ -1,0 +1,144 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\yashs\\Documents\\GitHub\\C-.NET\\WebDevProjects\\Walletapp\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{6BDE843B-6C3A-DF3D-4B0D-1EE5DDE2C18D}|AuthService.csproj|c:\\users\\yashs\\documents\\github\\c-.net\\webdevprojects\\walletapp\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6BDE843B-6C3A-DF3D-4B0D-1EE5DDE2C18D}|AuthService.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6BDE843B-6C3A-DF3D-4B0D-1EE5DDE2C18D}|AuthService.csproj|c:\\users\\yashs\\documents\\github\\c-.net\\webdevprojects\\walletapp\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{6BDE843B-6C3A-DF3D-4B0D-1EE5DDE2C18D}|AuthService.csproj|solutionrelative:appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6BDE843B-6C3A-DF3D-4B0D-1EE5DDE2C18D}|AuthService.csproj|c:\\users\\yashs\\documents\\github\\c-.net\\webdevprojects\\walletapp\\data\\authdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6BDE843B-6C3A-DF3D-4B0D-1EE5DDE2C18D}|AuthService.csproj|solutionrelative:data\\authdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6BDE843B-6C3A-DF3D-4B0D-1EE5DDE2C18D}|AuthService.csproj|c:\\users\\yashs\\documents\\github\\c-.net\\webdevprojects\\walletapp\\models\\kycdocument.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6BDE843B-6C3A-DF3D-4B0D-1EE5DDE2C18D}|AuthService.csproj|solutionrelative:models\\kycdocument.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6BDE843B-6C3A-DF3D-4B0D-1EE5DDE2C18D}|AuthService.csproj|c:\\users\\yashs\\documents\\github\\c-.net\\webdevprojects\\walletapp\\models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6BDE843B-6C3A-DF3D-4B0D-1EE5DDE2C18D}|AuthService.csproj|solutionrelative:models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6BDE843B-6C3A-DF3D-4B0D-1EE5DDE2C18D}|AuthService.csproj|c:\\users\\yashs\\documents\\github\\c-.net\\webdevprojects\\walletapp\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{6BDE843B-6C3A-DF3D-4B0D-1EE5DDE2C18D}|AuthService.csproj|solutionrelative:properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6BDE843B-6C3A-DF3D-4B0D-1EE5DDE2C18D}|AuthService.csproj|c:\\users\\yashs\\documents\\github\\c-.net\\webdevprojects\\walletapp\\authservice.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{6BDE843B-6C3A-DF3D-4B0D-1EE5DDE2C18D}|AuthService.csproj|solutionrelative:authservice.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 136,
+          "SelectedChildIndex": 7,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Users\\yashs\\Documents\\GitHub\\C-.NET\\WebDevProjects\\Walletapp\\appsettings.json",
+              "RelativeDocumentMoniker": "appsettings.json",
+              "ToolTip": "C:\\Users\\yashs\\Documents\\GitHub\\C-.NET\\WebDevProjects\\Walletapp\\appsettings.json",
+              "RelativeToolTip": "appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAYAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2026-03-16T19:40:12.99Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "AuthService",
+              "DocumentMoniker": "C:\\Users\\yashs\\Documents\\GitHub\\C-.NET\\WebDevProjects\\Walletapp\\AuthService.csproj",
+              "RelativeDocumentMoniker": "AuthService.csproj",
+              "ToolTip": "C:\\Users\\yashs\\Documents\\GitHub\\C-.NET\\WebDevProjects\\Walletapp\\AuthService.csproj",
+              "RelativeToolTip": "AuthService.csproj",
+              "ViewState": "AgIAABUAAAAAAAAAAABBwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2026-03-19T05:36:59.04Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "KycDocument.cs",
+              "DocumentMoniker": "C:\\Users\\yashs\\Documents\\GitHub\\C-.NET\\WebDevProjects\\Walletapp\\Models\\KycDocument.cs",
+              "RelativeDocumentMoniker": "Models\\KycDocument.cs",
+              "ToolTip": "C:\\Users\\yashs\\Documents\\GitHub\\C-.NET\\WebDevProjects\\Walletapp\\Models\\KycDocument.cs",
+              "RelativeToolTip": "Models\\KycDocument.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABkAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-19T05:15:32.307Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "User.cs",
+              "DocumentMoniker": "C:\\Users\\yashs\\Documents\\GitHub\\C-.NET\\WebDevProjects\\Walletapp\\Models\\User.cs",
+              "RelativeDocumentMoniker": "Models\\User.cs",
+              "ToolTip": "C:\\Users\\yashs\\Documents\\GitHub\\C-.NET\\WebDevProjects\\Walletapp\\Models\\User.cs",
+              "RelativeToolTip": "Models\\User.cs",
+              "ViewState": "AgIAAAsAAAAAAAAAAAA3wBkAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-19T04:52:04.654Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "AuthDbContext.cs",
+              "DocumentMoniker": "C:\\Users\\yashs\\Documents\\GitHub\\C-.NET\\WebDevProjects\\Walletapp\\Data\\AuthDbContext.cs",
+              "RelativeDocumentMoniker": "Data\\AuthDbContext.cs",
+              "ToolTip": "C:\\Users\\yashs\\Documents\\GitHub\\C-.NET\\WebDevProjects\\Walletapp\\Data\\AuthDbContext.cs",
+              "RelativeToolTip": "Data\\AuthDbContext.cs",
+              "ViewState": "AgIAAA0AAAAAAAAAAAAgwBYAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-19T04:51:26.869Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "launchSettings.json",
+              "DocumentMoniker": "C:\\Users\\yashs\\Documents\\GitHub\\C-.NET\\WebDevProjects\\Walletapp\\Properties\\launchSettings.json",
+              "RelativeDocumentMoniker": "Properties\\launchSettings.json",
+              "ToolTip": "C:\\Users\\yashs\\Documents\\GitHub\\C-.NET\\WebDevProjects\\Walletapp\\Properties\\launchSettings.json",
+              "RelativeToolTip": "Properties\\launchSettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAB0AAAAHAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2026-03-16T19:44:58.108Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\yashs\\Documents\\GitHub\\C-.NET\\WebDevProjects\\Walletapp\\Program.cs",
+              "RelativeDocumentMoniker": "Program.cs",
+              "ToolTip": "C:\\Users\\yashs\\Documents\\GitHub\\C-.NET\\WebDevProjects\\Walletapp\\Program.cs*",
+              "RelativeToolTip": "Program.cs*",
+              "ViewState": "AgIAAEAAAAAAAAAAAAAQwFMAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-16T19:43:06.4Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
