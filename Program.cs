@@ -5,6 +5,8 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using System.Text;
 
+
+
 namespace Walletapp
 {
     public class Program
@@ -16,9 +18,8 @@ namespace Walletapp
             // Add services to the container.
 
             builder.Services.AddControllers();
-            // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+    
             builder.Services.AddEndpointsApiExplorer();
-            builder.Services.AddSwaggerGen();
             builder.Services.AddDbContext<AuthDbContext>(options =>options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
             builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(options =>
@@ -35,8 +36,8 @@ namespace Walletapp
                     };
                 });
             builder.Services.AddAuthorization();
-            builder.Services.AddControllers();
-            builder.Services.AddEndpointsApiExplorer();
+            builder.Services.AddScoped<AuthService.Services.AuthServices>();
+
             builder.Services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo
@@ -78,10 +79,8 @@ namespace Walletapp
             }
 
             app.UseHttpsRedirection();
-
-            app.UseAuthorization();
             app.UseAuthentication();
-
+            app.UseAuthorization();
 
             app.MapControllers();
 

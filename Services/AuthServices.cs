@@ -9,11 +9,11 @@ using System.Text;
 
 namespace AuthService.Services
 {
-    public class AuthService
+    public class AuthServices
     {
         private readonly AuthDbContext _db;
         private readonly IConfiguration _config;
-        public AuthService(AuthDbContext db, IConfiguration config)
+        public AuthServices(AuthDbContext db, IConfiguration config)
         {
             _db = db;
             _config = config;
@@ -161,7 +161,7 @@ namespace AuthService.Services
 
             var claims = new[]
             {
-                new Claim("UserId", user.Id.ToString()),
+                new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
                 new Claim("FullName", user.FullName),
                 new Claim("Email", user.Email),
                 new Claim("Role", user.Role),
@@ -176,6 +176,10 @@ namespace AuthService.Services
                 signingCredentials: creds
             );
             return new JwtSecurityTokenHandler().WriteToken(token);
+        }
+        public async Task<User?> GetUserByEmailAsync(string email)
+        {
+            return await _db.Users.FirstOrDefaultAsync(u => u.Email == email.ToLower().Trim()&& u.Status == "Active");
         }
     }
 }
