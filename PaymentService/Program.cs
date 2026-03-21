@@ -19,7 +19,7 @@ namespace PaymentService
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
             builder.Services.AddDbContext<PaymentDbContext>(options=>options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
-
+            builder.Services.AddHttpContextAccessor();
             builder.Services.AddHttpClient("WalletService", client =>
             {
                client.BaseAddress = new Uri(builder.Configuration["WalletService:BaseUrl"]);

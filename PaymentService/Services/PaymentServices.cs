@@ -13,12 +13,16 @@ namespace PaymentService.Services
         private readonly IConfiguration _config;
         private readonly IHttpContextAccessor _httpContextAccessor;
 
-        public PaymentServices(PaymentDbContext db, IHttpClientFactory httpClientFactory, IConfiguration config)
+        public PaymentServices(
+            PaymentDbContext db,
+            IHttpClientFactory httpClientFactory,
+            IConfiguration config,
+            IHttpContextAccessor httpContextAccessor)
         {
             _db = db;
             _httpClientFactory = httpClientFactory;
             _config = config;
-
+            _httpContextAccessor = httpContextAccessor;
         }
         //Topup wallet
         public async Task<ApiResponse<PaymentResponse>> TopUpAsync(Guid userId, Guid walletId, TopUpRequest req)
@@ -90,7 +94,13 @@ namespace PaymentService.Services
             try
             {
                 var client = _httpClientFactory.CreateClient("WalletService");
-            
+
+                var authorization = _httpContextAccessor.HttpContext?.Request.Headers.Authorization.ToString();
+                if (!string.IsNullOrWhiteSpace(authorization))
+                {
+                    client.DefaultRequestHeaders.Authorization = AuthenticationHeaderValue.Parse(authorization);
+                }
+
                 var response = await client.PostAsJsonAsync("/api/wallet/credit",
                     new
                     {
