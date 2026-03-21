@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 
-namespace AdminService.Controllers
+namespace Reward_Service.Controllers
 {
     [ApiController]
     [Route("[controller]")]

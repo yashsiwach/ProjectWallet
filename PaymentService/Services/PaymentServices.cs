@@ -118,7 +118,7 @@ namespace PaymentService.Services
         }
         private static string GenerateGatewayRef()
         {
-            var datePart = DateTime.UtcNow.ToString("yyyyMMdd");
+            var datePart = DateTime.Now.ToString("yyyyMMdd");
             var randomPart = Guid.NewGuid().ToString("N")[..8].ToUpper();
             return $"PAY{datePart}{randomPart}";
         }

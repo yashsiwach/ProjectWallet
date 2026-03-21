@@ -13,10 +13,14 @@ namespace AuthService.Services
     {
         private readonly AuthDbContext _db;
         private readonly IConfiguration _config;
-        public AuthServices(AuthDbContext db, IConfiguration config)
+        private readonly IHttpClientFactory _httpClientFactory;
+
+        public AuthServices(AuthDbContext db, IConfiguration config, IHttpClientFactory httpClientFactory)
         {
             _db = db;
             _config = config;
+            _httpClientFactory = httpClientFactory;
+
         }
         public async Task<ApiResponse<AuthResponse>> RegisterAsync(RegisterRequest req)
         {
@@ -116,8 +120,32 @@ namespace AuthService.Services
 
             _db.KycDocuments.Add(kyc);
             await _db.SaveChangesAsync();
-            return ApiResponse<string>.Ok("KYC submitted successfully", null);
+            await SyncKycToAdminAsync(new
+            {
+                UserId = userId,
+                UserFullName = user.FullName,
+                UserEmail = user.Email,
+                DocumentType = req.DocumentType,
+                DocumentNumber = req.DocumentNumber,
+                SubmittedAt = kyc.SubmittedAt
+            });
 
+            return ApiResponse<string>.Ok("KYC submitted. Awaiting admin review.", "");
+
+        }
+        private async Task SyncKycToAdminAsync(object kycData)
+        {
+            try
+            {
+                var client = _httpClientFactory.CreateClient("AdminService");
+
+                var response = await client.PostAsJsonAsync(
+                    "/api/admin/kyc/sync", kycData);
+            }
+            catch (Exception ex)
+            {
+                    Console.WriteLine(ex.Message);
+            }
         }
 
         public async Task<ApiResponse<ProfileResponse>> GetProfileAsync(Guid userId)
@@ -153,7 +181,16 @@ namespace AuthService.Services
                 Kyc = kycInfo
             });
         }
+        public async Task<bool> UpdateUserStatusAsync(Guid userId, string status)
+        {
+            var user = await _db.Users.FindAsync(userId);
+            if (user == null) return false;
 
+            user.Status = status;
+            await _db.SaveChangesAsync();
+
+            return true;
+        }
         private string GenerateToken(User user)
         {
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["Jwt:Key"]));
@@ -164,7 +201,7 @@ namespace AuthService.Services
                 new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
                 new Claim("FullName", user.FullName),
                 new Claim("Email", user.Email),
-                new Claim("Role", user.Role),
+                new Claim(ClaimTypes.Role, user.Role),
                 new Claim("Status", user.Status)
             };
 
@@ -177,6 +214,7 @@ namespace AuthService.Services
             );
             return new JwtSecurityTokenHandler().WriteToken(token);
         }
+
         public async Task<User?> GetUserByEmailAsync(string email)
         {
             return await _db.Users.FirstOrDefaultAsync(u => u.Email == email.ToLower().Trim()&& u.Status == "Active");

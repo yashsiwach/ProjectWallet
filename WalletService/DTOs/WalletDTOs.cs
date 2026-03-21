@@ -7,7 +7,10 @@ public class TransferRequest
     public decimal Amount { get; set; }
     public string?Note { get; set; }
 }
-
+public class CreateInternalRequest
+{
+    public Guid UserId { get; set; }
+}
 //wallet details
 public class WalletResponse
 {

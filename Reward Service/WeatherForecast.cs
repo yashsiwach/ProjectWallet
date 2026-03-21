@@ -1,4 +1,4 @@
-namespace AdminService
+namespace Reward_Service
 {
     public class WeatherForecast
     {

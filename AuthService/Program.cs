@@ -16,7 +16,13 @@ namespace Walletapp
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
+            builder.Services.AddHttpClient("AdminService", client =>
+            {
+                client.BaseAddress = new Uri(builder.Configuration["AdminService:BaseUrl"]!);
+            });
 
+            // Also add this
+            builder.Services.AddHttpContextAccessor();
             builder.Services.AddControllers();
     
             builder.Services.AddEndpointsApiExplorer();

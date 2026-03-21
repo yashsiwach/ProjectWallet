@@ -76,6 +76,13 @@ namespace WalletService.Controllers
             if (!result.Success) return BadRequest(result);
             return Ok(result);
         }
+        [HttpPost("create-internal")]
+        public async Task<IActionResult> CreateWalletInternal([FromBody] CreateInternalRequest req)
+        {
+            var result = await _walletService.CreateWalletAsync(req.UserId);
+            if (!result.Success) return BadRequest(result);
+            return Ok(result);
+        }
     }
     public class CreditRequest
     {

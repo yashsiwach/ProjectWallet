@@ -69,5 +69,18 @@ namespace AuthService.Controllers
             if (user == null) return NotFound();
             return Ok(new { UserId = user.Id });
         }
+        [HttpPut("update-status")]
+        public async Task<IActionResult> UpdateStatus([FromBody] UpdateStatusRequest req)
+        {
+            var result = await _authService.UpdateUserStatusAsync(req.UserId, req.Status);
+            if (!result) return NotFound();
+            return Ok(new { message = "Status updated." });
+        }
+       
+    }
+    public class UpdateStatusRequest
+    {
+        public Guid UserId { get; set; }
+        public string Status { get; set; } = string.Empty;
     }
 }
