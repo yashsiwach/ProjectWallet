@@ -1,0 +1,59 @@
+# Build results
+bin/
+obj/
+
+# User-specific files
+*.user
+*.userosscache
+*.suo
+*.userprefs
+
+# VS Code
+.vscode/
+
+# Visual Studio
+.vs/
+*.csproj.user
+
+# Rider
+.idea/
+
+# Logs
+*.log
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Environment variables
+.env
+
+# Secrets
+appsettings.Development.json
+
+# Publish output
+publish/
+
+# NuGet packages
+*.nupkg
+packages/
+
+# Test results
+TestResults/
+
+# Coverage
+coverage/
+*.coverage
+*.coveragexml
+
+# Azure / deployment
+*.azurePubxml
+
+# Temporary files
+*.tmp
+*.temp
+
+# SQLite
+*.db
+*.db-shm
+*.db-wal
