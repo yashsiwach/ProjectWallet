@@ -24,6 +24,10 @@ namespace WalletService
             {
                 client.BaseAddress = new Uri(builder.Configuration["AuthService:BaseUrl"]!);
             });
+            builder.Services.AddHttpClient("RewardService", client =>
+            {
+                client.BaseAddress = new Uri(builder.Configuration["RewardService:BaseUrl"]!);
+            });
             builder.Services.AddHttpContextAccessor();
             //adding jwt authentication
             builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>

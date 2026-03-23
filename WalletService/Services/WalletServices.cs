@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using System.Net.Http.Headers;
 using WalletService.Data;
 using WalletService.DTOs;
 using WalletService.Models;
@@ -9,10 +10,14 @@ namespace WalletService.Services
     {
         private readonly WalletDbContext _db;
         private readonly IHttpClientFactory _httpClientFactory;
-        public WalletServices(WalletDbContext db, IHttpClientFactory httpClientFactory)
+        private readonly IHttpContextAccessor _httpContextAccessor; 
+
+        public WalletServices(WalletDbContext db, IHttpClientFactory httpClientFactory, IHttpContextAccessor httpContextAccessor)
         {
             _db = db;
             _httpClientFactory = httpClientFactory;
+            _httpContextAccessor = httpContextAccessor; 
+
         }
         //make wallet
         public async Task<ApiResponse<WalletResponse>> CreateWalletAsync(Guid userId)
@@ -80,7 +85,6 @@ namespace WalletService.Services
             await _db.SaveChangesAsync();
             return ApiResponse<WalletResponse>.Successfull(MapWallet(wallet), "Wallet credited successfully.");
         }
-
         //transfer money
         public async Task<ApiResponse<string>> TransferAsync(Guid senderUserId, TransferRequest req)
         {
@@ -153,12 +157,12 @@ namespace WalletService.Services
                 Note = req.Note,
                 CreatedAt = DateTime.Now
             });
-            await _db.SaveChangesAsync();
+            await _db.SaveChangesAsync(); 
+            await AwardPointsAsync(senderUserId, reference);
+
             return ApiResponse<string>.Successfull(reference, $"Transfer successful. Reference: {reference}");
         }
-
         // TRANSACTION HISTORY
-
         public async Task<ApiResponse<TransactionHistory>> GetHistoryAsync(Guid userId, int page, int pageSize)
         {
             var wallet = await _db.Wallets.FirstOrDefaultAsync(w => w.UserId == userId);
@@ -185,6 +189,34 @@ namespace WalletService.Services
                 Page = page,
                 PageSize = pageSize
             }, "OK");
+        }
+        private async Task AwardPointsAsync(Guid userId, string reference)
+        {
+            try
+            {
+                var client = _httpClientFactory.CreateClient("RewardService");
+
+                // Forward token
+                var authorization = _httpContextAccessor.HttpContext?.Request.Headers.Authorization.ToString();
+                if (!string.IsNullOrWhiteSpace(authorization))
+                    client.DefaultRequestHeaders.Authorization = AuthenticationHeaderValue.Parse(authorization);
+
+                var response = await client.PostAsJsonAsync(
+                    "/api/reward/award",
+                    new
+                    {
+                        UserId = userId,
+                        Reference = reference + "_OUT", 
+                        Reason = "transfer_completed"
+                    });
+
+               
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+               
+            }
         }
         //Helper
         private async Task<Guid?> GetUserIdByEmailAsync(string email)
