@@ -30,6 +30,8 @@ namespace Reward_Service
                         Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]!))
                 };
             });
+            builder.Services.AddHostedService<TransferCompletedConsumer>();
+
             builder.Services.AddAuthorization();
             builder.Services.AddControllers();
             builder.Services.AddEndpointsApiExplorer();

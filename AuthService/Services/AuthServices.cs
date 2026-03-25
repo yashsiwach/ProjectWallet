@@ -14,13 +14,13 @@ namespace AuthService.Services
         private readonly AuthDbContext _db;
         private readonly IConfiguration _config;
         private readonly IHttpClientFactory _httpClientFactory;
-
-        public AuthServices(AuthDbContext db, IConfiguration config, IHttpClientFactory httpClientFactory)
+        private readonly RabbitMqPublisher _rabbitMq;
+        public AuthServices(AuthDbContext db, IConfiguration config, IHttpClientFactory httpClientFactory, RabbitMqPublisher rabbitMq)
         {
             _db = db;
             _config = config;
             _httpClientFactory = httpClientFactory;
-
+            _rabbitMq = rabbitMq;
         }
         public async Task<ApiResponse<AuthResponse>> RegisterAsync(RegisterRequest req)
         {
@@ -120,7 +120,7 @@ namespace AuthService.Services
 
             _db.KycDocuments.Add(kyc);
             await _db.SaveChangesAsync();
-            await SyncKycToAdminAsync(new
+            _rabbitMq.Publish("kyc_submitted", new
             {
                 UserId = userId,
                 UserFullName = user.FullName,
@@ -133,21 +133,7 @@ namespace AuthService.Services
             return ApiResponse<string>.Ok("KYC submitted. Awaiting admin review.", "");
 
         }
-        private async Task SyncKycToAdminAsync(object kycData)
-        {
-            try
-            {
-                var client = _httpClientFactory.CreateClient("AdminService");
-
-                var response = await client.PostAsJsonAsync(
-                    "/api/admin/kyc/sync", kycData);
-            }
-            catch (Exception ex)
-            {
-                    Console.WriteLine(ex.Message);
-            }
-        }
-
+       
         public async Task<ApiResponse<ProfileResponse>> GetProfileAsync(Guid userId)
         {
             var user = await _db.Users.Include(u => u.KycDocument).FirstOrDefaultAsync(u => u.Id == userId);

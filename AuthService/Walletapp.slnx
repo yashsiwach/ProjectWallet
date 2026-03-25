@@ -1,7 +1,8 @@
 <Solution>
-  <Project Path="../AdminService/AdminService.csproj" Id="754b07a4-3f15-4c0d-b408-cdab7b6abf76" />
-  <Project Path="../PaymentService/PaymentService.csproj" Id="3a944a16-5f96-49f3-b6e2-5fb31142ca2e" />
-  <Project Path="../Reward Service/Reward Service.csproj" Id="e261c802-3731-445f-b1b5-bae8086c4c25" />
-  <Project Path="../WalletService/WalletService.csproj" Id="9fc5e1c2-da57-4776-b299-638eb8ad93e4" />
-  <Project Path="AuthService.csproj" />
+  <Project Path="../../../../../../Documents/GitHub/ProjectWallet/AdminService/AdminService.csproj" Id="754b07a4-3f15-4c0d-b408-cdab7b6abf76" />
+  <Project Path="../../../../../../Documents/GitHub/ProjectWallet/AuthService/AuthService.csproj" />
+  <Project Path="../../../../../../Documents/GitHub/ProjectWallet/NotificationService/NotificationService.csproj" Id="fe0c8367-419b-4e1a-8015-48cdd9420fc9" />
+  <Project Path="../../../../../../Documents/GitHub/ProjectWallet/PaymentService/PaymentService.csproj" Id="3a944a16-5f96-49f3-b6e2-5fb31142ca2e" />
+  <Project Path="../../../../../../Documents/GitHub/ProjectWallet/Reward Service/Reward Service.csproj" Id="e261c802-3731-445f-b1b5-bae8086c4c25" />
+  <Project Path="../../../../../../Documents/GitHub/ProjectWallet/WalletService/WalletService.csproj" Id="9fc5e1c2-da57-4776-b299-638eb8ad93e4" />
 </Solution>

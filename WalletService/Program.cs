@@ -5,6 +5,7 @@ using Microsoft.OpenApi.Models;
 
 using System.Text;
 using WalletService.Data;
+using WalletService.Services;
 
 namespace WalletService
 {
@@ -13,8 +14,7 @@ namespace WalletService
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
-
-            // Add services to the container.
+            builder.Services.AddSingleton<RabbitMqPublisher>();
             builder.Services.AddDbContext<WalletDbContext>(options =>options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
             builder.Services.AddControllers();
             builder.Services.AddEndpointsApiExplorer();

@@ -10,14 +10,16 @@ namespace WalletService.Services
     {
         private readonly WalletDbContext _db;
         private readonly IHttpClientFactory _httpClientFactory;
-        private readonly IHttpContextAccessor _httpContextAccessor; 
+        private readonly IHttpContextAccessor _httpContextAccessor;
+        private readonly RabbitMqPublisher _rabbitMq;
 
-        public WalletServices(WalletDbContext db, IHttpClientFactory httpClientFactory, IHttpContextAccessor httpContextAccessor)
+
+        public WalletServices(WalletDbContext db, IHttpClientFactory httpClientFactory, IHttpContextAccessor httpContextAccessor, RabbitMqPublisher rabbitMq)
         {
             _db = db;
             _httpClientFactory = httpClientFactory;
-            _httpContextAccessor = httpContextAccessor; 
-
+            _httpContextAccessor = httpContextAccessor;
+            _rabbitMq = rabbitMq;
         }
         //make wallet
         public async Task<ApiResponse<WalletResponse>> CreateWalletAsync(Guid userId)
@@ -158,7 +160,15 @@ namespace WalletService.Services
                 CreatedAt = DateTime.Now
             });
             await _db.SaveChangesAsync(); 
-            await AwardPointsAsync(senderUserId, reference);
+            //await AwardPointsAsync(senderUserId, reference);
+            _rabbitMq.Publish("transfer_completed", new
+            {
+                SenderUserId = senderUserId,
+                ReceiverUserId = receiverUserId,
+                Amount = req.Amount,
+                Reference = reference,
+                Reason = "transfer_completed"
+            });
 
             return ApiResponse<string>.Successfull(reference, $"Transfer successful. Reference: {reference}");
         }
@@ -190,34 +200,7 @@ namespace WalletService.Services
                 PageSize = pageSize
             }, "OK");
         }
-        private async Task AwardPointsAsync(Guid userId, string reference)
-        {
-            try
-            {
-                var client = _httpClientFactory.CreateClient("RewardService");
-
-                // Forward token
-                var authorization = _httpContextAccessor.HttpContext?.Request.Headers.Authorization.ToString();
-                if (!string.IsNullOrWhiteSpace(authorization))
-                    client.DefaultRequestHeaders.Authorization = AuthenticationHeaderValue.Parse(authorization);
-
-                var response = await client.PostAsJsonAsync(
-                    "/api/reward/award",
-                    new
-                    {
-                        UserId = userId,
-                        Reference = reference + "_OUT", 
-                        Reason = "transfer_completed"
-                    });
-
-               
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.ToString());
-               
-            }
-        }
+      
         //Helper
         private async Task<Guid?> GetUserIdByEmailAsync(string email)
         {
