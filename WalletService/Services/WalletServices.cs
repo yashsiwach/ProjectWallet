@@ -159,8 +159,9 @@ namespace WalletService.Services
                 Note = req.Note,
                 CreatedAt = DateTime.Now
             });
-            await _db.SaveChangesAsync(); 
+            await _db.SaveChangesAsync();
             //await AwardPointsAsync(senderUserId, reference);
+            // 1.Publish to RewardService
             _rabbitMq.Publish("transfer_completed", new
             {
                 SenderUserId = senderUserId,
@@ -168,6 +169,24 @@ namespace WalletService.Services
                 Amount = req.Amount,
                 Reference = reference,
                 Reason = "transfer_completed"
+            });
+
+            // 2. Notify sender
+            _rabbitMq.Publish("notifications", new
+            {
+                UserId = senderUserId.ToString(),
+                Title = "Transfer Sent",
+                Message = $"You sent ₹{req.Amount} successfully. Ref: {reference}",
+                Type = "transfer_completed"
+            });
+
+            // 3. Notify receiver
+            _rabbitMq.Publish("notifications", new
+            {
+                UserId = receiverUserId.ToString(),
+                Title = "Money Received",
+                Message = $"You received ₹{req.Amount}. Ref: {reference}",
+                Type = "transfer_completed"
             });
 
             return ApiResponse<string>.Successfull(reference, $"Transfer successful. Reference: {reference}");
