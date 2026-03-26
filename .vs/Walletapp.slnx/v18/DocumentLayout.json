@@ -3,40 +3,20 @@
   "WorkspaceRootPath": "C:\\Users\\yashs\\Documents\\GitHub\\ProjectWallet\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{CF9FD0F0-B9C2-54C6-189B-77AA3D46F4C2}|NotificationService\\NotificationService.csproj|c:\\users\\yashs\\documents\\github\\projectwallet\\notificationservice\\controllers\\notificationcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CF9FD0F0-B9C2-54C6-189B-77AA3D46F4C2}|NotificationService\\NotificationService.csproj|solutionrelative:notificationservice\\controllers\\notificationcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{E3DCA26C-751B-4BA7-A817-9D3304C9C016}|Gateway\\Gateway.csproj|c:\\users\\yashs\\documents\\github\\projectwallet\\gateway\\ocelot.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{E3DCA26C-751B-4BA7-A817-9D3304C9C016}|Gateway\\Gateway.csproj|solutionrelative:gateway\\ocelot.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{CF9FD0F0-B9C2-54C6-189B-77AA3D46F4C2}|NotificationService\\NotificationService.csproj|c:\\users\\yashs\\documents\\github\\projectwallet\\notificationservice\\services\\notificationservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CF9FD0F0-B9C2-54C6-189B-77AA3D46F4C2}|NotificationService\\NotificationService.csproj|solutionrelative:notificationservice\\services\\notificationservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{E3DCA26C-751B-4BA7-A817-9D3304C9C016}|Gateway\\Gateway.csproj|c:\\users\\yashs\\documents\\github\\projectwallet\\gateway\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E3DCA26C-751B-4BA7-A817-9D3304C9C016}|Gateway\\Gateway.csproj|solutionrelative:gateway\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{CF9FD0F0-B9C2-54C6-189B-77AA3D46F4C2}|NotificationService\\NotificationService.csproj|c:\\users\\yashs\\documents\\github\\projectwallet\\notificationservice\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CF9FD0F0-B9C2-54C6-189B-77AA3D46F4C2}|NotificationService\\NotificationService.csproj|solutionrelative:notificationservice\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{E3DCA26C-751B-4BA7-A817-9D3304C9C016}|Gateway\\Gateway.csproj|c:\\users\\yashs\\documents\\github\\projectwallet\\gateway\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{E3DCA26C-751B-4BA7-A817-9D3304C9C016}|Gateway\\Gateway.csproj|solutionrelative:gateway\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{CF9FD0F0-B9C2-54C6-189B-77AA3D46F4C2}|NotificationService\\NotificationService.csproj|c:\\users\\yashs\\documents\\github\\projectwallet\\notificationservice\\data\\notificationrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CF9FD0F0-B9C2-54C6-189B-77AA3D46F4C2}|NotificationService\\NotificationService.csproj|solutionrelative:notificationservice\\data\\notificationrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{3219CBD1-64BE-FDDD-C1D6-02B8F3C3FC4B}|WalletService\\WalletService.csproj|c:\\users\\yashs\\documents\\github\\projectwallet\\walletservice\\services\\walletservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3219CBD1-64BE-FDDD-C1D6-02B8F3C3FC4B}|WalletService\\WalletService.csproj|solutionrelative:walletservice\\services\\walletservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{CF9FD0F0-B9C2-54C6-189B-77AA3D46F4C2}|NotificationService\\NotificationService.csproj|c:\\users\\yashs\\documents\\github\\projectwallet\\notificationservice\\services\\notificationconsumer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CF9FD0F0-B9C2-54C6-189B-77AA3D46F4C2}|NotificationService\\NotificationService.csproj|solutionrelative:notificationservice\\services\\notificationconsumer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{CF9FD0F0-B9C2-54C6-189B-77AA3D46F4C2}|NotificationService\\NotificationService.csproj|c:\\users\\yashs\\documents\\github\\projectwallet\\notificationservice\\dtos\\notificationdtos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CF9FD0F0-B9C2-54C6-189B-77AA3D46F4C2}|NotificationService\\NotificationService.csproj|solutionrelative:notificationservice\\dtos\\notificationdtos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{CF9FD0F0-B9C2-54C6-189B-77AA3D46F4C2}|NotificationService\\NotificationService.csproj|c:\\users\\yashs\\documents\\github\\projectwallet\\notificationservice\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
-      "RelativeMoniker": "D:0:0:{CF9FD0F0-B9C2-54C6-189B-77AA3D46F4C2}|NotificationService\\NotificationService.csproj|solutionrelative:notificationservice\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{CF9FD0F0-B9C2-54C6-189B-77AA3D46F4C2}|NotificationService\\NotificationService.csproj|c:\\users\\yashs\\documents\\github\\projectwallet\\notificationservice\\models\\notification.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CF9FD0F0-B9C2-54C6-189B-77AA3D46F4C2}|NotificationService\\NotificationService.csproj|solutionrelative:notificationservice\\models\\notification.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{E3DCA26C-751B-4BA7-A817-9D3304C9C016}|Gateway\\Gateway.csproj|c:\\users\\yashs\\documents\\github\\projectwallet\\gateway\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{E3DCA26C-751B-4BA7-A817-9D3304C9C016}|Gateway\\Gateway.csproj|solutionrelative:gateway\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
     }
   ],
   "DocumentGroupContainers": [
@@ -46,7 +26,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Bookmark",
@@ -54,119 +34,54 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "NotificationController.cs",
-              "DocumentMoniker": "C:\\Users\\yashs\\Documents\\GitHub\\ProjectWallet\\NotificationService\\Controllers\\NotificationController.cs",
-              "RelativeDocumentMoniker": "NotificationService\\Controllers\\NotificationController.cs",
-              "ToolTip": "C:\\Users\\yashs\\Documents\\GitHub\\ProjectWallet\\NotificationService\\Controllers\\NotificationController.cs*",
-              "RelativeToolTip": "NotificationService\\Controllers\\NotificationController.cs*",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAADgAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-25T22:22:55.252Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "WalletServices.cs",
-              "DocumentMoniker": "C:\\Users\\yashs\\Documents\\GitHub\\ProjectWallet\\WalletService\\Services\\WalletServices.cs",
-              "RelativeDocumentMoniker": "WalletService\\Services\\WalletServices.cs",
-              "ToolTip": "C:\\Users\\yashs\\Documents\\GitHub\\ProjectWallet\\WalletService\\Services\\WalletServices.cs",
-              "RelativeToolTip": "WalletService\\Services\\WalletServices.cs",
-              "ViewState": "AgIAAJcAAAAAAAAAAAAAwKgAAAAkAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-25T22:18:55.262Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "NotificationConsumer.cs",
-              "DocumentMoniker": "C:\\Users\\yashs\\Documents\\GitHub\\ProjectWallet\\NotificationService\\Services\\NotificationConsumer.cs",
-              "RelativeDocumentMoniker": "NotificationService\\Services\\NotificationConsumer.cs",
-              "ToolTip": "C:\\Users\\yashs\\Documents\\GitHub\\ProjectWallet\\NotificationService\\Services\\NotificationConsumer.cs",
-              "RelativeToolTip": "NotificationService\\Services\\NotificationConsumer.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAHoAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-25T22:01:30.041Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "NotificationServices.cs",
-              "DocumentMoniker": "C:\\Users\\yashs\\Documents\\GitHub\\ProjectWallet\\NotificationService\\Services\\NotificationServices.cs",
-              "RelativeDocumentMoniker": "NotificationService\\Services\\NotificationServices.cs",
-              "ToolTip": "C:\\Users\\yashs\\Documents\\GitHub\\ProjectWallet\\NotificationService\\Services\\NotificationServices.cs*",
-              "RelativeToolTip": "NotificationService\\Services\\NotificationServices.cs*",
-              "ViewState": "AgIAACwAAAAAAAAAAAAgwEUAAAAuAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-25T21:58:22.09Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "NotificationDTOs.cs",
-              "DocumentMoniker": "C:\\Users\\yashs\\Documents\\GitHub\\ProjectWallet\\NotificationService\\DTOs\\NotificationDTOs.cs",
-              "RelativeDocumentMoniker": "NotificationService\\DTOs\\NotificationDTOs.cs",
-              "ToolTip": "C:\\Users\\yashs\\Documents\\GitHub\\ProjectWallet\\NotificationService\\DTOs\\NotificationDTOs.cs*",
-              "RelativeToolTip": "NotificationService\\DTOs\\NotificationDTOs.cs*",
-              "ViewState": "AgIAABAAAAAAAAAAAAAwwB8AAAAIAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-25T21:57:10.569Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\yashs\\Documents\\GitHub\\ProjectWallet\\NotificationService\\Program.cs",
-              "RelativeDocumentMoniker": "NotificationService\\Program.cs",
-              "ToolTip": "C:\\Users\\yashs\\Documents\\GitHub\\ProjectWallet\\NotificationService\\Program.cs*",
-              "RelativeToolTip": "NotificationService\\Program.cs*",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-25T21:54:38.917Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "appsettings.json",
-              "DocumentMoniker": "C:\\Users\\yashs\\Documents\\GitHub\\ProjectWallet\\NotificationService\\appsettings.json",
-              "RelativeDocumentMoniker": "NotificationService\\appsettings.json",
-              "ToolTip": "C:\\Users\\yashs\\Documents\\GitHub\\ProjectWallet\\NotificationService\\appsettings.json*",
-              "RelativeToolTip": "NotificationService\\appsettings.json*",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAABtAAAAAAAAAA==",
+              "Title": "launchSettings.json",
+              "DocumentMoniker": "C:\\Users\\yashs\\Documents\\GitHub\\ProjectWallet\\Gateway\\Properties\\launchSettings.json",
+              "RelativeDocumentMoniker": "Gateway\\Properties\\launchSettings.json",
+              "ToolTip": "C:\\Users\\yashs\\Documents\\GitHub\\ProjectWallet\\Gateway\\Properties\\launchSettings.json",
+              "RelativeToolTip": "Gateway\\Properties\\launchSettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAAHAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2026-03-25T21:52:16.826Z",
+              "WhenOpened": "2026-03-25T23:01:30.31Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 3,
-              "Title": "NotificationRepository.cs",
-              "DocumentMoniker": "C:\\Users\\yashs\\Documents\\GitHub\\ProjectWallet\\NotificationService\\Data\\NotificationRepository.cs",
-              "RelativeDocumentMoniker": "NotificationService\\Data\\NotificationRepository.cs",
-              "ToolTip": "C:\\Users\\yashs\\Documents\\GitHub\\ProjectWallet\\NotificationService\\Data\\NotificationRepository.cs*",
-              "RelativeToolTip": "NotificationService\\Data\\NotificationRepository.cs*",
-              "ViewState": "AgIAADQAAAAAAAAAAAAkwE0AAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-25T21:47:58.114Z",
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Users\\yashs\\Documents\\GitHub\\ProjectWallet\\Gateway\\appsettings.json",
+              "RelativeDocumentMoniker": "Gateway\\appsettings.json",
+              "ToolTip": "C:\\Users\\yashs\\Documents\\GitHub\\ProjectWallet\\Gateway\\appsettings.json",
+              "RelativeToolTip": "Gateway\\appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2026-03-25T23:01:13.18Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "Notification.cs",
-              "DocumentMoniker": "C:\\Users\\yashs\\Documents\\GitHub\\ProjectWallet\\NotificationService\\Models\\Notification.cs",
-              "RelativeDocumentMoniker": "NotificationService\\Models\\Notification.cs",
-              "ToolTip": "C:\\Users\\yashs\\Documents\\GitHub\\ProjectWallet\\NotificationService\\Models\\Notification.cs",
-              "RelativeToolTip": "NotificationService\\Models\\Notification.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABsAAAA3AAAAAAAAAA==",
+              "DocumentIndex": 1,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\yashs\\Documents\\GitHub\\ProjectWallet\\Gateway\\Program.cs",
+              "RelativeDocumentMoniker": "Gateway\\Program.cs",
+              "ToolTip": "C:\\Users\\yashs\\Documents\\GitHub\\ProjectWallet\\Gateway\\Program.cs",
+              "RelativeToolTip": "Gateway\\Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAKAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-25T21:46:08.052Z",
+              "WhenOpened": "2026-03-25T22:59:22.831Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "ocelot.json",
+              "DocumentMoniker": "C:\\Users\\yashs\\Documents\\GitHub\\ProjectWallet\\Gateway\\ocelot.json",
+              "RelativeDocumentMoniker": "Gateway\\ocelot.json",
+              "ToolTip": "C:\\Users\\yashs\\Documents\\GitHub\\ProjectWallet\\Gateway\\ocelot.json",
+              "RelativeToolTip": "Gateway\\ocelot.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAE8AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2026-03-25T22:57:15.079Z",
               "EditorCaption": ""
             }
           ]

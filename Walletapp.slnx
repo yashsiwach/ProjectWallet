@@ -2,6 +2,7 @@
 <Solution>
   <Project Path="AdminService/AdminService.csproj" />
   <Project Path="AuthService/AuthService.csproj" />
+  <Project Path="Gateway/Gateway.csproj" Id="e3dca26c-751b-4ba7-a817-9d3304c9c016" />
   <Project Path="NotificationService/NotificationService.csproj" />
   <Project Path="PaymentService/PaymentService.csproj" />
   <Project Path="Reward Service/Reward Service.csproj" />
