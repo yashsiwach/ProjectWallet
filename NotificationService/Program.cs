@@ -15,7 +15,16 @@ namespace NotificationService
         {
             var builder = WebApplication.CreateBuilder(args);
 
-
+            // Allow Angular frontend
+            builder.Services.AddCors(options =>
+            {
+                options.AddPolicy("AllowAngular", policy =>
+                {
+                    policy.WithOrigins("http://localhost:4200")
+                          .AllowAnyHeader()
+                          .AllowAnyMethod();
+                });
+            });
             builder.Services.AddSingleton<NotificationRepository>();
             builder.Services.AddScoped<NotificationServices>();
             builder.Services.AddHostedService<NotificationConsumer>();
@@ -80,7 +89,7 @@ namespace NotificationService
                 app.UseSwagger();
                 app.UseSwaggerUI();
             }
-
+            app.UseCors("AllowAngular");
             app.UseHttpsRedirection();
             app.UseAuthentication();
 

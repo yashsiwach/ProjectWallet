@@ -14,7 +14,16 @@ namespace AdminService
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
-
+            // Allow Angular frontend
+            builder.Services.AddCors(options =>
+            {
+                options.AddPolicy("AllowAngular", policy =>
+                {
+                    policy.WithOrigins("http://localhost:4200")
+                          .AllowAnyHeader()
+                          .AllowAnyMethod();
+                });
+            });
             builder.Services.AddControllers();
             builder.Services.AddHostedService<KycSubmittedConsumer>();
             builder.Services.AddEndpointsApiExplorer();
@@ -84,7 +93,7 @@ namespace AdminService
                 app.UseSwagger();
                 app.UseSwaggerUI();
             }
-
+            app.UseCors("AllowAngular");
             app.UseHttpsRedirection();
             app.UseAuthentication();
 

@@ -31,7 +31,16 @@ namespace Reward_Service
                 };
             });
             builder.Services.AddHostedService<TransferCompletedConsumer>();
-
+            // Allow Angular frontend
+            builder.Services.AddCors(options =>
+            {
+                options.AddPolicy("AllowAngular", policy =>
+                {
+                    policy.WithOrigins("http://localhost:4200")
+                          .AllowAnyHeader()
+                          .AllowAnyMethod();
+                });
+            });
             builder.Services.AddAuthorization();
             builder.Services.AddControllers();
             builder.Services.AddEndpointsApiExplorer();
@@ -69,7 +78,7 @@ namespace Reward_Service
                 app.UseSwagger();
                 app.UseSwaggerUI();
             }
-
+            app.UseCors("AllowAngular");
             app.UseHttpsRedirection();
             app.UseAuthentication();
             app.UseAuthorization();

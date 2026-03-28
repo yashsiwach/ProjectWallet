@@ -1,6 +1,30 @@
 {
     "Routes": [
         {
+            "UpstreamPathTemplate": "/tickets/{everything}",
+            "UpstreamHttpMethod": [ "GET", "POST", "PUT", "DELETE" ],
+            "DownstreamPathTemplate": "/api/tickets/{everything}",
+            "DownstreamScheme": "https",
+            "DownstreamHostAndPorts": [
+                {
+                    "Host": "localhost",
+                    "Port": 7097
+                }
+            ]
+        },
+        {
+            "UpstreamPathTemplate": "/tickets",
+            "UpstreamHttpMethod": [ "GET", "POST" ],
+            "DownstreamPathTemplate": "/api/tickets",
+            "DownstreamScheme": "https",
+            "DownstreamHostAndPorts": [
+                {
+                    "Host": "localhost",
+                    "Port": 7097
+                }
+            ]
+        },
+        {
             "UpstreamPathTemplate": "/auth/{everything}",
             "UpstreamHttpMethod": [ "GET", "POST", "PUT", "DELETE" ],
             "DownstreamPathTemplate": "/api/auth/{everything}",
