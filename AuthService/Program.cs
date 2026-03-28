@@ -1,105 +1,109 @@
-using AuthService.Data;
-using AuthService.Services;
+using AuthService.Application.Interfaces;
+using AuthService.Application.Services;
+using AuthService.Infrastructure.Data;
+using AuthService.Infrastructure.Messaging;
+using AuthService.Infrastructure.Repositories;
+using AuthService.Middleware;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using System.Text;
 
+namespace AuthService;
 
-
-namespace Walletapp
+public class Program
 {
-    public class Program
+    public static void Main(string[] args)
     {
-        public static void Main(string[] args)
+        var builder = WebApplication.CreateBuilder(args);
+
+        // Infrastructure — Messaging
+        builder.Services.AddSingleton<IRabbitMqPublisher, RabbitMqPublisher>();
+
+        // Infrastructure — Data
+        builder.Services.AddDbContext<AuthDbContext>(options =>
+            options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+        // Infrastructure — Repositories
+        builder.Services.AddScoped<IUserRepository, UserRepository>();
+        builder.Services.AddScoped<IKycRepository, KycRepository>();
+
+        // Application — Services
+        builder.Services.AddScoped<IAuthService, Application.Services.AuthService>();
+
+        builder.Services.AddHttpClient();
+        builder.Services.AddHttpContextAccessor();
+        builder.Services.AddControllers();
+
+        builder.Services.AddCors(options =>
         {
-            var builder = WebApplication.CreateBuilder(args);
-            builder.Services.AddSingleton<RabbitMqPublisher>();
-            // Add services to the container.
-            builder.Services.AddHttpClient("AdminService", client =>
+            options.AddPolicy("AllowAngular", policy =>
+                policy.WithOrigins("http://localhost:4200")
+                      .AllowAnyHeader()
+                      .AllowAnyMethod());
+        });
+
+        builder.Services.AddEndpointsApiExplorer();
+
+        builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+            .AddJwtBearer(options =>
             {
-                client.BaseAddress = new Uri(builder.Configuration["AdminService:BaseUrl"]!);
+                options.TokenValidationParameters = new TokenValidationParameters
+                {
+                    ValidateIssuer = true,
+                    ValidateAudience = true,
+                    ValidateLifetime = true,
+                    ValidateIssuerSigningKey = true,
+                    ValidIssuer = builder.Configuration["Jwt:Issuer"],
+                    ValidAudience = builder.Configuration["Jwt:Audience"],
+                    IssuerSigningKey = new SymmetricSecurityKey(
+                        Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]!))
+                };
             });
 
-            // Also add this
-            builder.Services.AddHttpContextAccessor();
-            builder.Services.AddControllers();
-            builder.Services.AddCors(options =>
+        builder.Services.AddAuthorization();
+
+        builder.Services.AddSwaggerGen(c =>
+        {
+            c.SwaggerDoc("v1", new OpenApiInfo { Title = "AuthService", Version = "v1" });
+            c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
             {
-                options.AddPolicy("AllowAngular", policy =>
-                {
-                    policy.WithOrigins("http://localhost:4200")
-                          .AllowAnyHeader()
-                          .AllowAnyMethod();
-                });
+                Name = "Authorization",
+                Type = SecuritySchemeType.ApiKey,
+                Scheme = "Bearer",
+                In = ParameterLocation.Header,
+                Description = "type: bearer {your JWT token}"
             });
-            builder.Services.AddEndpointsApiExplorer();
-            builder.Services.AddDbContext<AuthDbContext>(options =>options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
-            builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-                .AddJwtBearer(options =>
+            c.AddSecurityRequirement(new OpenApiSecurityRequirement
+            {
                 {
-                    options.TokenValidationParameters = new TokenValidationParameters
+                    new OpenApiSecurityScheme
                     {
-                        ValidateIssuer = true,
-                        ValidateAudience = true,
-                        ValidateLifetime = true,
-                        ValidateIssuerSigningKey = true,
-                        ValidIssuer = builder.Configuration["Jwt:Issuer"],
-                        ValidAudience = builder.Configuration["Jwt:Audience"],
-                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]))
-                    };
-                });
-            builder.Services.AddAuthorization();
-            builder.Services.AddScoped<AuthService.Services.AuthServices>();
-
-            builder.Services.AddSwaggerGen(c =>
-            {
-                c.SwaggerDoc("v1", new OpenApiInfo
-                {
-                    Title = "AuthService",
-                    Version = "v1",
-                });
-                c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
-                {
-                    Name = "Authorization",
-                    Type = SecuritySchemeType.ApiKey,
-                    Scheme = "Bearer",
-                    In = ParameterLocation.Header,
-                    Description = "type: bearer {your JWT token}"
-                });
-                c.AddSecurityRequirement(new OpenApiSecurityRequirement
-                {
-                    {
-                        new OpenApiSecurityScheme
-                        {
-                            Reference = new OpenApiReference
-                            {
-                                Type = ReferenceType.SecurityScheme,
-                                Id = "Bearer"
-                            }
-                        },
-                        Array.Empty<string>()
-                    }
-                });
+                        Reference = new OpenApiReference { Type = ReferenceType.SecurityScheme, Id = "Bearer" }
+                    },
+                    Array.Empty<string>()
+                }
             });
+        });
 
-            var app = builder.Build();
+        var app = builder.Build();
 
-            if (app.Environment.IsDevelopment())
-            {
-                app.UseSwagger();
-                app.UseSwaggerUI();
-            }
-            app.UseCors("AllowAngular");
-            app.UseHttpsRedirection();
-            app.UseAuthentication();
-            app.UseAuthorization();
+        // Global Exception Middleware — must be first
+        app.UseMiddleware<GlobalExceptionMiddleware>();
 
-            
-            app.MapControllers();
-
-            app.Run();
+        if (app.Environment.IsDevelopment())
+        {
+            app.UseSwagger();
+            app.UseSwaggerUI();
         }
+
+        app.UseCors("AllowAngular");
+        app.UseHttpsRedirection();
+        app.UseAuthentication();
+        app.UseAuthorization();
+        app.MapControllers();
+
+        app.Run();
     }
 }

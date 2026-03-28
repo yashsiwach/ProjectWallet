@@ -1,5 +1,5 @@
-﻿using AdminService.DTOs;
-using AdminService.Services;
+using AdminService.Application.Interfaces;
+using AdminService.DTOs;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
@@ -8,79 +8,77 @@ namespace AdminService.Controllers;
 
 [ApiController]
 [Route("api/admin")]
-[Authorize(Roles = "Admin")] 
+[Authorize(Roles = "Admin")]
 public class AdminController : ControllerBase
 {
-    private readonly AdminServices _adminServices;
+    private readonly IAdminService _adminService;
+    private readonly ITicketService _ticketService;
 
-    public AdminController(AdminServices adminServices)
+    public AdminController(IAdminService adminService, ITicketService ticketService)
     {
-        _adminServices = adminServices;
+        _adminService = adminService;
+        _ticketService = ticketService;
     }
 
     private Guid CurrentAdminId => Guid.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)!);
 
-    // GET /api/admin/kyc/pending 
+    // GET /api/admin/kyc/pending
     [HttpGet("kyc/pending")]
     public async Task<IActionResult> GetPendingKyc()
     {
-        var result = await _adminServices.GetPendingKycAsync();
+        var result = await _adminService.GetPendingKycAsync();
         return Ok(result);
     }
 
-    //  GET /api/admin/kyc/all
+    // GET /api/admin/kyc/all
     [HttpGet("kyc/all")]
     public async Task<IActionResult> GetAllKyc()
     {
-        var result = await _adminServices.GetAllKycAsync();
+        var result = await _adminService.GetAllKycAsync();
         return Ok(result);
     }
 
-    //PUT /api/admin/kyc/{userId}/approve
-    // Approves KYC → activates user → creates wallet
+    // PUT /api/admin/kyc/{userId}/approve
     [HttpPut("kyc/{userId:guid}/approve")]
     public async Task<IActionResult> ApproveKyc(Guid userId, [FromBody] KycActionRequest req)
     {
-        var result = await _adminServices.ApproveKycAsync(userId, req, CurrentAdminId);
-
+        var result = await _adminService.ApproveKycAsync(userId, req, CurrentAdminId);
         if (!result.Success) return BadRequest(result);
         return Ok(result);
     }
 
-    //  PUT /api/admin/kyc/{userId}/reject
+    // PUT /api/admin/kyc/{userId}/reject
     [HttpPut("kyc/{userId:guid}/reject")]
-    public async Task<IActionResult> RejectKyc( Guid userId, [FromBody] KycActionRequest req)
+    public async Task<IActionResult> RejectKyc(Guid userId, [FromBody] KycActionRequest req)
     {
-        var result = await _adminServices.RejectKycAsync(
-            userId, req, CurrentAdminId);
-
+        var result = await _adminService.RejectKycAsync(userId, req, CurrentAdminId);
         if (!result.Success) return BadRequest(result);
         return Ok(result);
     }
 
-    // ── GET /api/admin/tickets ────────────────────────────────────────────────
-    // Optional filter: /api/admin/tickets?status=Open
+    // GET /api/admin/tickets?status=Open
     [HttpGet("tickets")]
     public async Task<IActionResult> GetTickets([FromQuery] string? status = null)
     {
-        var result = await _adminServices.GetTicketsAsync(status);
+        var result = await _ticketService.GetTicketsAsync(status);
         return Ok(result);
     }
+
+    // PUT /api/admin/tickets/{ticketId}/reply
+    [HttpPut("tickets/{ticketId:guid}/reply")]
+    public async Task<IActionResult> ReplyToTicket(Guid ticketId, [FromBody] TicketReplyRequest req)
+    {
+        var result = await _ticketService.ReplyToTicketAsync(ticketId, req, CurrentAdminId);
+        if (!result.Success) return BadRequest(result);
+        return Ok(result);
+    }
+
+    // POST /api/admin/kyc/sync
     [AllowAnonymous]
     [HttpPost("kyc/sync")]
     public async Task<IActionResult> SyncKyc([FromBody] SyncKycRequest req)
     {
-        var result = await _adminServices.SyncKycAsync(req);
-        if (!result.Success) return BadRequest(result);
-        return Ok(result);
-    }
-
-    // ── PUT /api/admin/tickets/{ticketId}/reply ───────────────────────────────
-    [HttpPut("tickets/{ticketId:guid}/reply")]
-    public async Task<IActionResult> ReplyToTicket(Guid ticketId, [FromBody] TicketReplyRequest req)
-    {
-        var result = await _adminServices.ReplyToTicketAsync(ticketId, req, CurrentAdminId);
-
+        var result = await _adminService.SyncKycAsync(req);
         if (!result.Success) return BadRequest(result);
         return Ok(result);
     }

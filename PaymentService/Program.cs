@@ -2,96 +2,105 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
-using PaymentService.Data;
-using PaymentService.Services;
+using PaymentService.Application.Interfaces;
+using PaymentService.Application.Services;
+using PaymentService.Infrastructure.Data;
+using PaymentService.Infrastructure.Repositories;
+using PaymentService.Middleware;
 using System.Text;
 
-namespace PaymentService
+namespace PaymentService;
+
+public class Program
 {
-    public class Program
+    public static void Main(string[] args)
     {
-        public static void Main(string[] args)
+        var builder = WebApplication.CreateBuilder(args);
+
+        // Infrastructure — Data
+        builder.Services.AddDbContext<PaymentDbContext>(options =>
+            options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+        // Infrastructure — Repositories
+        builder.Services.AddScoped<IPaymentRepository, PaymentRepository>();
+
+        // Application — Services
+        builder.Services.AddScoped<IPaymentService, Application.Services.PaymentService>();
+
+        builder.Services.AddHttpClient("WalletService", client =>
+            client.BaseAddress = new Uri(builder.Configuration["WalletService:BaseUrl"]!));
+
+        builder.Services.AddHttpContextAccessor();
+        builder.Services.AddControllers();
+
+        builder.Services.AddCors(options =>
         {
-            var builder = WebApplication.CreateBuilder(args);
+            options.AddPolicy("AllowAngular", policy =>
+                policy.WithOrigins("http://localhost:4200")
+                      .AllowAnyHeader()
+                      .AllowAnyMethod());
+        });
 
-            // Allow Angular frontend
-            builder.Services.AddCors(options =>
+        builder.Services.AddEndpointsApiExplorer();
+
+        builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+            .AddJwtBearer(options =>
             {
-                options.AddPolicy("AllowAngular", policy =>
+                options.TokenValidationParameters = new TokenValidationParameters
                 {
-                    policy.WithOrigins("http://localhost:4200")
-                          .AllowAnyHeader()
-                          .AllowAnyMethod();
-                });
+                    ValidateIssuer = true,
+                    ValidateAudience = true,
+                    ValidateLifetime = true,
+                    ValidateIssuerSigningKey = true,
+                    ValidIssuer = builder.Configuration["Jwt:Issuer"],
+                    ValidAudience = builder.Configuration["Jwt:Audience"],
+                    IssuerSigningKey = new SymmetricSecurityKey(
+                        Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]!))
+                };
             });
-            builder.Services.AddControllers();
-            builder.Services.AddEndpointsApiExplorer();
-            builder.Services.AddSwaggerGen();
-            builder.Services.AddDbContext<PaymentDbContext>(options=>options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
-            builder.Services.AddHttpContextAccessor();
-            builder.Services.AddHttpClient("WalletService", client =>
+
+        builder.Services.AddAuthorization();
+
+        builder.Services.AddSwaggerGen(c =>
+        {
+            c.SwaggerDoc("v1", new OpenApiInfo { Title = "PaymentService", Version = "v1" });
+            c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
             {
-               client.BaseAddress = new Uri(builder.Configuration["WalletService:BaseUrl"]);
+                Name = "Authorization",
+                Type = SecuritySchemeType.ApiKey,
+                Scheme = "Bearer",
+                In = ParameterLocation.Header,
+                Description = "Type: Bearer {your token}"
             });
-            builder.Services.AddScoped<PaymentServices>();
-            builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>
+            c.AddSecurityRequirement(new OpenApiSecurityRequirement
+            {
                 {
-                    options.TokenValidationParameters = new TokenValidationParameters
+                    new OpenApiSecurityScheme
                     {
-                        ValidateIssuer = true,
-                        ValidateAudience = true,
-                        ValidateLifetime = true,
-                        ValidateIssuerSigningKey = true,
-                        ValidIssuer = builder.Configuration["Jwt:Issuer"],
-                        ValidAudience = builder.Configuration["Jwt:Audience"],
-                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]!))
-                    };
-                });
-
-            builder.Services.AddAuthorization();
-            builder.Services.AddSwaggerGen(c =>
-            {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "PaymentService", Version = "v1" });
-                c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
-                {
-                    Name = "Authorization",
-                    Type = SecuritySchemeType.ApiKey,
-                    Scheme = "Bearer",
-                    In = ParameterLocation.Header,
-                    Description = "Type: Bearer {your token}"
-                });
-                c.AddSecurityRequirement(new OpenApiSecurityRequirement
-                {
-                    {
-                        new OpenApiSecurityScheme
-                        {
-                            Reference = new OpenApiReference
-                            {
-                                Type = ReferenceType.SecurityScheme,
-                                Id   = "Bearer"
-                            }
-                        },
-                        Array.Empty<string>()
-                    }
-                });
+                        Reference = new OpenApiReference { Type = ReferenceType.SecurityScheme, Id = "Bearer" }
+                    },
+                    Array.Empty<string>()
+                }
             });
-            var app = builder.Build();
+        });
 
-            if (app.Environment.IsDevelopment())
-            {
-                app.UseSwagger();
-                app.UseSwaggerUI();
-            }
-            app.UseCors("AllowAngular");
-            app.UseHttpsRedirection();
-            app.UseAuthentication();
+        var app = builder.Build();
 
-            app.UseAuthorization();
+        // Global Exception Middleware — must be first
+        app.UseMiddleware<GlobalExceptionMiddleware>();
 
-
-            app.MapControllers();
-
-            app.Run();
+        if (app.Environment.IsDevelopment())
+        {
+            app.UseSwagger();
+            app.UseSwaggerUI();
         }
+
+        app.UseCors("AllowAngular");
+        app.UseHttpsRedirection();
+        app.UseAuthentication();
+        app.UseAuthorization();
+        app.MapControllers();
+
+        app.Run();
     }
 }

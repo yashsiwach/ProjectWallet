@@ -1,28 +1,32 @@
 using Ocelot.DependencyInjection;
 using Ocelot.Middleware;
 
-var builder = WebApplication.CreateBuilder(args);
+namespace Gateway;
 
-builder.Configuration.AddJsonFile("ocelot.json", optional: false, reloadOnChange: true);
-
-
-builder.Services.AddCors(options =>
+public class Program
 {
-    options.AddPolicy("AllowAngular", policy =>
+    public static async Task Main(string[] args)
     {
-        policy.WithOrigins("http://localhost:4200")
-              .AllowAnyHeader()
-              .AllowAnyMethod();
-    });
-});
+        var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddOcelot();
+        builder.Configuration.AddJsonFile("ocelot.json", optional: false, reloadOnChange: true);
 
-var app = builder.Build();
+        builder.Services.AddCors(options =>
+        {
+            options.AddPolicy("AllowAngular", policy =>
+                policy.WithOrigins("http://localhost:4200")
+                      .AllowAnyHeader()
+                      .AllowAnyMethod());
+        });
 
+        builder.Services.AddOcelot();
 
-app.UseCors("AllowAngular");
+        var app = builder.Build();
 
-await app.UseOcelot();
+        app.UseCors("AllowAngular");
 
-app.Run();
+        await app.UseOcelot();
+
+        app.Run();
+    }
+}

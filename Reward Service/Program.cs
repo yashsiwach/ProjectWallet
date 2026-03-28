@@ -1,21 +1,49 @@
-
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
-using Reward_Service.Services;
+using Reward_Service.Application.Interfaces;
+using Reward_Service.Application.Services;
+using Reward_Service.Infrastructure.Data;
+using Reward_Service.Infrastructure.Messaging;
+using Reward_Service.Infrastructure.Repositories;
+using Reward_Service.Middleware;
 using System.Text;
 
-namespace Reward_Service
+namespace Reward_Service;
+
+public class Program
 {
-    public class Program
+    public static void Main(string[] args)
     {
-        public static void Main(string[] args)
+        var builder = WebApplication.CreateBuilder(args);
+
+        // Infrastructure — Data
+        builder.Services.AddDbContext<RewardDbContext>(options =>
+            options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+        // Infrastructure — Repositories
+        builder.Services.AddScoped<IRewardRepository, RewardRepository>();
+
+        // Application — Services
+        builder.Services.AddScoped<IRewardService, RewardService>();
+
+        // Infrastructure — Messaging (background consumer)
+        builder.Services.AddHostedService<TransferCompletedConsumer>();
+
+        builder.Services.AddControllers();
+
+        builder.Services.AddCors(options =>
         {
-            var builder = WebApplication.CreateBuilder(args);
-            builder.Services.AddDbContext<Data.RewardDbContext>(options =>options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
-            builder.Services.AddScoped<RewardServices>();
-            builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+            options.AddPolicy("AllowAngular", policy =>
+                policy.WithOrigins("http://localhost:4200")
+                      .AllowAnyHeader()
+                      .AllowAnyMethod());
+        });
+
+        builder.Services.AddEndpointsApiExplorer();
+
+        builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             .AddJwtBearer(options =>
             {
                 options.TokenValidationParameters = new TokenValidationParameters
@@ -30,62 +58,49 @@ namespace Reward_Service
                         Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]!))
                 };
             });
-            builder.Services.AddHostedService<TransferCompletedConsumer>();
-            // Allow Angular frontend
-            builder.Services.AddCors(options =>
+
+        builder.Services.AddAuthorization();
+
+        builder.Services.AddSwaggerGen(c =>
+        {
+            c.SwaggerDoc("v1", new OpenApiInfo { Title = "RewardService", Version = "v1" });
+            c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
             {
-                options.AddPolicy("AllowAngular", policy =>
-                {
-                    policy.WithOrigins("http://localhost:4200")
-                          .AllowAnyHeader()
-                          .AllowAnyMethod();
-                });
+                Name = "Authorization",
+                Type = SecuritySchemeType.ApiKey,
+                Scheme = "Bearer",
+                In = ParameterLocation.Header,
+                Description = "Type: Bearer {your token}"
             });
-            builder.Services.AddAuthorization();
-            builder.Services.AddControllers();
-            builder.Services.AddEndpointsApiExplorer();
-            builder.Services.AddSwaggerGen();
-            builder.Services.AddSwaggerGen(c =>
+            c.AddSecurityRequirement(new OpenApiSecurityRequirement
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "RewardService", Version = "v1" });
-                c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
                 {
-                    Name = "Authorization",
-                    Type = SecuritySchemeType.ApiKey,
-                    Scheme = "Bearer",
-                    In = ParameterLocation.Header,
-                    Description = "Type: Bearer {your token}"
-                });
-                c.AddSecurityRequirement(new OpenApiSecurityRequirement
-                {
+                    new OpenApiSecurityScheme
                     {
-                        new OpenApiSecurityScheme
-                        {
-                            Reference = new OpenApiReference
-                            {
-                                Type = ReferenceType.SecurityScheme,
-                                Id   = "Bearer"
-                            }
-                        },
-                        Array.Empty<string>()
-                    }
-                });
+                        Reference = new OpenApiReference { Type = ReferenceType.SecurityScheme, Id = "Bearer" }
+                    },
+                    Array.Empty<string>()
+                }
             });
-            var app = builder.Build();
+        });
 
-            if (app.Environment.IsDevelopment())
-            {
-                app.UseSwagger();
-                app.UseSwaggerUI();
-            }
-            app.UseCors("AllowAngular");
-            app.UseHttpsRedirection();
-            app.UseAuthentication();
-            app.UseAuthorization();
+        var app = builder.Build();
 
-            app.MapControllers();
+        // Global Exception Middleware — must be first
+        app.UseMiddleware<GlobalExceptionMiddleware>();
 
-            app.Run();
+        if (app.Environment.IsDevelopment())
+        {
+            app.UseSwagger();
+            app.UseSwaggerUI();
         }
+
+        app.UseCors("AllowAngular");
+        app.UseHttpsRedirection();
+        app.UseAuthentication();
+        app.UseAuthorization();
+        app.MapControllers();
+
+        app.Run();
     }
 }

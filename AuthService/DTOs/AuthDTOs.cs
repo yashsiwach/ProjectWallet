@@ -1,6 +1,5 @@
-﻿namespace AuthService.DTOs;
+namespace AuthService.DTOs;
 
-//  when registering
 public class RegisterRequest
 {
     public string FullName { get; set; } = string.Empty;
@@ -9,21 +8,24 @@ public class RegisterRequest
     public string Password { get; set; } = string.Empty;
 }
 
-//  when logging in
 public class LoginRequest
 {
     public string Email { get; set; } = string.Empty;
     public string Password { get; set; } = string.Empty;
 }
 
-// when submitting KYC
 public class KycRequest
 {
     public string DocumentType { get; set; } = string.Empty;
     public string DocumentNumber { get; set; } = string.Empty;
 }
 
-// send BACK after register or login
+// Moved from AuthController.cs — belongs in DTOs
+public class UpdateStatusRequest
+{
+    public Guid UserId { get; set; }
+    public string Status { get; set; } = string.Empty;
+}
 
 public class AuthResponse
 {
@@ -35,7 +37,6 @@ public class AuthResponse
     public string Status { get; set; } = string.Empty;
 }
 
-// send back for profile
 public class ProfileResponse
 {
     public string UserId { get; set; } = string.Empty;
@@ -47,7 +48,6 @@ public class ProfileResponse
     public KycInfo? Kyc { get; set; }
 }
 
-// KYC details inside the profile response
 public class KycInfo
 {
     public string DocumentType { get; set; } = string.Empty;
@@ -58,18 +58,15 @@ public class KycInfo
     public DateTime? ReviewedAt { get; set; }
 }
 
-// API response wrapped 
 public class ApiResponse<T>
 {
     public bool Success { get; set; }
     public string Message { get; set; } = string.Empty;
     public T? Data { get; set; }
 
-    // success response
     public static ApiResponse<T> Ok(string message, T data) =>
-        new ApiResponse<T> { Success = true, Message = message, Data = data };
+        new() { Success = true, Message = message, Data = data };
 
-    //  failed response
     public static ApiResponse<T> Fail(string message) =>
-        new ApiResponse<T> { Success = false, Message = message, Data = default };
+        new() { Success = false, Message = message, Data = default };
 }

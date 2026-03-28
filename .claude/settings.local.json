@@ -1,0 +1,7 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(find \"c:\\\\Users\\\\yashs\\\\Documents\\\\GitHub\\\\ProjectWallet\\\\WalletService\"\" -type f -name \"*.cs\" -o -name \"*.json\" -o -name \"*.csproj \")"
+    ]
+  }
+}
