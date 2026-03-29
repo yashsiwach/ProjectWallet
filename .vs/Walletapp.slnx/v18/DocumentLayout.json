@@ -3,20 +3,16 @@
   "WorkspaceRootPath": "C:\\Users\\yashs\\Documents\\GitHub\\ProjectWallet\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{E3DCA26C-751B-4BA7-A817-9D3304C9C016}|Gateway\\Gateway.csproj|c:\\users\\yashs\\documents\\github\\projectwallet\\gateway\\ocelot.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
-      "RelativeMoniker": "D:0:0:{E3DCA26C-751B-4BA7-A817-9D3304C9C016}|Gateway\\Gateway.csproj|solutionrelative:gateway\\ocelot.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+      "AbsoluteMoniker": "D:0:0:{6CDAB7B3-DE4F-6FF5-06F0-D824F083F1AF}|AuthService\\AuthService.csproj|c:\\users\\yashs\\documents\\github\\projectwallet\\authservice\\services\\authservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6CDAB7B3-DE4F-6FF5-06F0-D824F083F1AF}|AuthService\\AuthService.csproj|solutionrelative:authservice\\services\\authservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{E3DCA26C-751B-4BA7-A817-9D3304C9C016}|Gateway\\Gateway.csproj|c:\\users\\yashs\\documents\\github\\projectwallet\\gateway\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E3DCA26C-751B-4BA7-A817-9D3304C9C016}|Gateway\\Gateway.csproj|solutionrelative:gateway\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{F465746A-A2E0-0013-6EA6-B03BA41B90F2}|AdminService\\AdminService.csproj|c:\\users\\yashs\\documents\\github\\projectwallet\\adminservice\\services\\adminservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F465746A-A2E0-0013-6EA6-B03BA41B90F2}|AdminService\\AdminService.csproj|solutionrelative:adminservice\\services\\adminservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{E3DCA26C-751B-4BA7-A817-9D3304C9C016}|Gateway\\Gateway.csproj|c:\\users\\yashs\\documents\\github\\projectwallet\\gateway\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
-      "RelativeMoniker": "D:0:0:{E3DCA26C-751B-4BA7-A817-9D3304C9C016}|Gateway\\Gateway.csproj|solutionrelative:gateway\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{E3DCA26C-751B-4BA7-A817-9D3304C9C016}|Gateway\\Gateway.csproj|c:\\users\\yashs\\documents\\github\\projectwallet\\gateway\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
-      "RelativeMoniker": "D:0:0:{E3DCA26C-751B-4BA7-A817-9D3304C9C016}|Gateway\\Gateway.csproj|solutionrelative:gateway\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+      "AbsoluteMoniker": "D:0:0:{F465746A-A2E0-0013-6EA6-B03BA41B90F2}|AdminService\\AdminService.csproj|c:\\users\\yashs\\documents\\github\\projectwallet\\adminservice\\controllers\\admincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F465746A-A2E0-0013-6EA6-B03BA41B90F2}|AdminService\\AdminService.csproj|solutionrelative:adminservice\\controllers\\admincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -26,62 +22,53 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
             },
             {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "launchSettings.json",
-              "DocumentMoniker": "C:\\Users\\yashs\\Documents\\GitHub\\ProjectWallet\\Gateway\\Properties\\launchSettings.json",
-              "RelativeDocumentMoniker": "Gateway\\Properties\\launchSettings.json",
-              "ToolTip": "C:\\Users\\yashs\\Documents\\GitHub\\ProjectWallet\\Gateway\\Properties\\launchSettings.json",
-              "RelativeToolTip": "Gateway\\Properties\\launchSettings.json",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAAHAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2026-03-25T23:01:30.31Z",
-              "EditorCaption": ""
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "appsettings.json",
-              "DocumentMoniker": "C:\\Users\\yashs\\Documents\\GitHub\\ProjectWallet\\Gateway\\appsettings.json",
-              "RelativeDocumentMoniker": "Gateway\\appsettings.json",
-              "ToolTip": "C:\\Users\\yashs\\Documents\\GitHub\\ProjectWallet\\Gateway\\appsettings.json",
-              "RelativeToolTip": "Gateway\\appsettings.json",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2026-03-25T23:01:13.18Z",
+              "DocumentIndex": 0,
+              "Title": "AuthServices.cs",
+              "DocumentMoniker": "C:\\Users\\yashs\\Documents\\GitHub\\ProjectWallet\\AuthService\\Services\\AuthServices.cs",
+              "RelativeDocumentMoniker": "AuthService\\Services\\AuthServices.cs",
+              "ToolTip": "C:\\Users\\yashs\\Documents\\GitHub\\ProjectWallet\\AuthService\\Services\\AuthServices.cs",
+              "RelativeToolTip": "AuthService\\Services\\AuthServices.cs",
+              "ViewState": "AgIAABMAAAAAAAAAAAAQwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-29T12:38:58.843Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\yashs\\Documents\\GitHub\\ProjectWallet\\Gateway\\Program.cs",
-              "RelativeDocumentMoniker": "Gateway\\Program.cs",
-              "ToolTip": "C:\\Users\\yashs\\Documents\\GitHub\\ProjectWallet\\Gateway\\Program.cs",
-              "RelativeToolTip": "Gateway\\Program.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAKAAAAAAAAAA==",
+              "Title": "AdminServices.cs",
+              "DocumentMoniker": "C:\\Users\\yashs\\Documents\\GitHub\\ProjectWallet\\AdminService\\Services\\AdminServices.cs",
+              "RelativeDocumentMoniker": "AdminService\\Services\\AdminServices.cs",
+              "ToolTip": "C:\\Users\\yashs\\Documents\\GitHub\\ProjectWallet\\AdminService\\Services\\AdminServices.cs",
+              "RelativeToolTip": "AdminService\\Services\\AdminServices.cs",
+              "ViewState": "AgIAAPwAAAAAAAAAAAAiwAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-25T22:59:22.831Z",
+              "WhenOpened": "2026-03-29T12:38:22.147Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "ocelot.json",
-              "DocumentMoniker": "C:\\Users\\yashs\\Documents\\GitHub\\ProjectWallet\\Gateway\\ocelot.json",
-              "RelativeDocumentMoniker": "Gateway\\ocelot.json",
-              "ToolTip": "C:\\Users\\yashs\\Documents\\GitHub\\ProjectWallet\\Gateway\\ocelot.json",
-              "RelativeToolTip": "Gateway\\ocelot.json",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAE8AAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2026-03-25T22:57:15.079Z",
+              "DocumentIndex": 2,
+              "Title": "AdminController.cs",
+              "DocumentMoniker": "C:\\Users\\yashs\\Documents\\GitHub\\ProjectWallet\\AdminService\\Controllers\\AdminController.cs",
+              "RelativeDocumentMoniker": "AdminService\\Controllers\\AdminController.cs",
+              "ToolTip": "C:\\Users\\yashs\\Documents\\GitHub\\ProjectWallet\\AdminService\\Controllers\\AdminController.cs",
+              "RelativeToolTip": "AdminService\\Controllers\\AdminController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-29T12:37:40.944Z",
               "EditorCaption": ""
             }
           ]

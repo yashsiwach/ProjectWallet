@@ -1,7 +1,7 @@
 ﻿using MongoDB.Driver;
 using NotificationService.Models;
 
-namespace NotificationService.Data;
+namespace NotificationService.DTOs;
 
 public class NotificationRepository
 {

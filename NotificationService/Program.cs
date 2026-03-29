@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
-using NotificationService.Data;
+using NotificationService.DTOs;
 using NotificationService.Services;
 using System.Text;
 

@@ -1,5 +1,4 @@
-﻿using NotificationService.Data;
-using NotificationService.DTOs;
+﻿using NotificationService.DTOs;
 using NotificationService.Models;
 
 namespace NotificationService.Services;
